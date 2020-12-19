@@ -8,13 +8,14 @@ Array.prototype.map = myMap
 
 //-------done--------
 
-function myForEach(array = this, f = alert) {
+function myForEach(f = alert) {
+    const array = this
     for (let i = 0; i < array.length; i++) {
         f(array[i])
     }
 }
 
-function mySort(array = this, index = 0, sortFunction = function(current, next) {
+function mySort(sortFunction = function(current, next) {
     current = String(current)
     next = String(next)
 
@@ -24,36 +25,35 @@ function mySort(array = this, index = 0, sortFunction = function(current, next) 
     else {
         return 1
     }
-}) {
-    let count = 0;
+    }) {
+    let array = this;
     
-    for (count; count < array.length; count++) {
-        f(array, index, sortFunction)
+    for (let i = 0; i < array.length; i++) {
+        f(0, sortFunction)
 
-        if (count === array.length - 1) {
-            console.log(array)
+        if (i === array.length - 1) {
+            return array
         }
     }
 
-    function f(array, index = 0, sortFunction) {
-        let startIndex = index;
-
-        if (startIndex < array.length - 1) {
-            let current = array[startIndex];
-            let next = array[startIndex + 1];
+    function f(index, sortFunction) {
+        if (index < array.length - 1) {
+            let current = array[index];
+            let next = array[index + 1];
             if (sortFunction(current, next) > 0) {
-                array[startIndex] = next;
-                array[startIndex + 1] = current
+                array[index] = next;
+                array[index + 1] = current
             }
-            f(array, startIndex + 1, sortFunction)
+            f(index + 1, sortFunction)
         }
-        else if (startIndex === array.length - 1) {    
-            return array
+        else if (index === array.length - 1) {    
+            return 
         }  
     }
 }
 
-function myFilter(array = this, filterFunction) {
+function myFilter(filterFunction) {
+    const array = this;
     let result = [];
 
     for (let i = 0; i < array.length; i++) {
@@ -65,7 +65,8 @@ function myFilter(array = this, filterFunction) {
     console.log(result)
 }
 
-function myFind(array = this, findFunction) {
+function myFind(findFunction) {
+    const array = this;
 
     for (let i = 0; i < array.length; i++) {
         if (findFunction(array[i])) {
@@ -75,7 +76,8 @@ function myFind(array = this, findFunction) {
     }
 }
 
-function myMap(array = this, mapFunction = () => {}) {
+function myMap(mapFunction = () => {}) {
+    const array = this;
     let result = []
 
     for (let i = 0; i < array.length; i++) {

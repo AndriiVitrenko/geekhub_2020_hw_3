@@ -4,12 +4,12 @@ function Constructor(number) {
 
         add: function(n) {
             this.number += n
-            return new Constructor(this.number)
+            return this
         },
 
         multiply: function(n) {
             this.number *= n
-            return new Constructor(this.number)
+            return this
         },
 
         result: function() {
@@ -22,4 +22,4 @@ function calculate(number) {
     return new Constructor(number)
 }
 
-calculate(3).add(2).multiply(3).result()
+console.log(calculate(3).add(2).multiply(8).result())
