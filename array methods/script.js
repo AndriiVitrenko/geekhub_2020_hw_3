@@ -51,7 +51,7 @@ function mySort(sortFunction = function(current, next) {
         }  
     }
 }
-
+ 
 function myFilter(filterFunction) {
     const array = this;
     let result = [];
